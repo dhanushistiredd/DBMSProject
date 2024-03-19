@@ -50,6 +50,36 @@ app.get('/match/:matchNumber', (req, res) => {
     db.close();
 });
 
+// Fetch batsman scores by match id from database
+app.get('/batsman/:matchId', (req, res) => {
+    const matchId = req.params.matchId;
+    const db = new sqlite3.Database(dbPath);
+    db.all('SELECT * FROM batsman_scores WHERE match_id = ?', [matchId], (err, rows) => {
+        if (err) {
+            console.error('Database error:', err.message);
+            res.status(500).send('Internal Server Error');
+        } else {
+            res.json(rows);
+        }
+    });
+    db.close();
+});
+
+// Fetch bowling figures by match id from database
+app.get('/bowling/:matchId', (req, res) => {
+    const matchId = req.params.matchId;
+    const db = new sqlite3.Database(dbPath);
+    db.all('SELECT * FROM bowling_figures WHERE match_id = ?', [matchId], (err, rows) => {
+        if (err) {
+            console.error('Database error:', err.message);
+            res.status(500).send('Internal Server Error');
+        } else {
+            res.json(rows);
+        }
+    });
+    db.close();
+});
+
 // Start the server
 app.listen(port, () => {
     console.log(`Server is running at http://localhost:${port}`);
