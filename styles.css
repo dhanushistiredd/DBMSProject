@@ -19,13 +19,10 @@ h1 {
     color: #333;
 }
 
-form {
-    text-align: center;
-    margin-bottom: 20px;
-}
-
 label {
     font-weight: bold;
+    display: block;
+    margin-bottom: 10px;
 }
 
 input[type="number"] {
@@ -41,13 +38,15 @@ button {
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    margin-top: 10px;
 }
 
 button:hover {
     background-color: #0056b3;
 }
 
-#matchDetails {
+#matchDetails,
+#additionalInfo {
     margin-top: 20px;
     padding: 10px;
     background-color: #f9f9f9;
